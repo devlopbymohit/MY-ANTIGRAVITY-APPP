@@ -1,43 +1,54 @@
-# FitGuru AI — Elite AI Fitness & Nutrition Coach 🦾
+# FitGuru AI — Fitness & Nutrition Coach
 
-**FitGuru AI** is a premium, pure pitch-black AMOLED themed AI Fitness & Nutrition application built with **React 19**, **TypeScript**, **Tailwind CSS v4**, **Lucide Icons**, and the official **Google GenAI SDK** (`@google/genai`).
+A React + TypeScript fitness dashboard with workout planning, guided workout sessions, nutrition tracking, hydration tracking, progress history, browser voice features, and an optional Google Gemini-powered coach. The app also includes local fallback coaching and workout/meal generation when no API key is configured.
 
----
+## Requirements
 
-## 🌟 Key Upgrades & Features
+- Node.js 20.19+ (or 22.12+)
+- npm
 
-### 1. 🦾 Head Coach: Coach Yashvant Singh
-- **Coach Yashvant Singh**: Head AI Strength, Hypertrophy & Athletic Conditioning Coach.
-- Provides deep, actionable guidance blending modern progressive overload, biomechanics, and Indian high-protein nutrition (Sattu, Paneer, Soya Chunks, Chicken, Eggs).
-- Interactive conversational chat with **Text-to-Speech (read-aloud)** and **hands-free microphone dictation**.
+## Install and run
 
-### 2. 🖤 Pure Pitch-Black AMOLED Theme
-- Deep `#000000` AMOLED dark design with glowing amber (`#f59e0b`) and emerald green accents.
-- Polished, professional English UI/UX throughout navigation, cards, workout players, and nutrition dashboards.
+From the project folder, run:
 
-### 3. 🏋️‍♂️ AI Workout Generator & Guided Session Mode
-- **Parametric Generator**: Customize by Goal (*Athletic Power, Hypertrophy, Fat Loss, Mobility, Endurance*), Level (*Beginner, Intermediate, Advanced*), Equipment (*Bodyweight, Dumbbells, Full Gym, Bands*), and Duration (*15m to 60m*).
-- **Live Workout Mode**: Interactive exercise tracker, automated rest timers with Web Audio countdown beeps (3-2-1-GO!), form cues, and victory celebration fanfare with confetti!
-
-### 4. 🥗 Smart Nutrition & Macro Target Engine
-- **Mifflin-St Jeor Metabolic Calculator**: Calculates BMR and TDEE with dynamic toggles for Deficit (Fat Loss), Maintenance, or Surplus (Muscle Gain).
-- **AI Daily Meal Plan Generator**: Tailored Indian high-protein recipes (Breakfast, Lunch, Dinner, Post-Workout Fuel).
-- **Daily Hydration Station**: 8-glass clickable water intake tracker.
-- **Custom Food Logger**: Quick food logging with macro progress bars.
-
-### 5. 📹 Live Vision Camera Rep Counter & Form Coach
-- Real-time computer vision motion tracking directly in your browser.
-- Tracks Hindu Squats (Baithak), Hindu Pushups (Sapate / Dand), Standard Squats, and Dumbbell Bicep Curls.
-- On-screen HUD, motion intensity meter, and audio rep click counter.
-- Built-in simulation mode for testing without a webcam.
-
----
-
-## 🚀 Running the App
-
-```powershell
-cd "D:\Yashwant doc\ai-fitness-coach"
-npm.cmd run dev
+```bash
+npm ci
+npm run dev
 ```
 
-Open your browser at: **http://localhost:5173**
+Open the local URL printed by Vite (normally `http://localhost:5173`).
+
+On Windows PowerShell, use `npm.cmd ci` and `npm.cmd run dev` if PowerShell blocks the npm script.
+
+## Production build
+
+```bash
+npm run build
+npm run preview
+```
+
+The production files are generated in `dist/`.
+
+## Optional Gemini integration
+
+The app works without an API key using its built-in local engine. To enable Gemini:
+
+1. Copy `.env.example` to `.env.local`.
+2. Set `VITE_GEMINI_API_KEY` to your Google AI Studio API key, or enter the key in the app's Settings screen.
+3. Restart the development server after changing `.env.local`.
+
+**Security note:** Variables prefixed with `VITE_` and API keys entered into a browser app are exposed to the client. This setup is suitable for local testing, not for protecting a production secret. For a public deployment, move Gemini requests behind a server-side API and keep the key on the server.
+
+## Project structure
+
+- `src/App.tsx` — application shell and tab routing
+- `src/components/` — coach, workout, nutrition, progress, vision, and settings UI
+- `src/data/` — preset workouts, meals, coaches, and exercise library
+- `src/services/` — Gemini integration, browser audio, and local storage
+- `src/types/` — shared TypeScript models
+
+## Notes
+
+- User profile, settings, workout routines, meal plans, and workout history are stored in the browser's local storage.
+- Camera and microphone features require browser permission and generally work on `localhost` or HTTPS.
+- Fitness and nutrition guidance is informational and is not a substitute for advice from a qualified healthcare professional.
